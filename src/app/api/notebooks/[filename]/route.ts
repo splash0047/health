@@ -4,13 +4,14 @@ import path from 'path';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { filename: string } }
+  context: { params: Promise<{ filename: string }> }
 ) {
   try {
-    // Get the URL from the request and extract the filename from the URL path
-    const url = new URL(request.url);
-    const pathParts = url.pathname.split('/');
-    const filename = pathParts[pathParts.length - 1];
+    // Resolve the params promise
+    const params = await context.params;
+    
+    // Get the filename from params
+    const filename = params.filename;
     
     // Build the path to the notebook file
     const notebookPath = path.join(process.cwd(), 'Notebook', filename);
