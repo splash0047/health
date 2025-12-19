@@ -21,6 +21,8 @@ const nextConfig = {
   },
   // Enable static export
   output: 'export',
+  // Exclude API routes from static export
+  trailingSlash: true,
 };
 
 export default nextConfig;
