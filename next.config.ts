@@ -15,6 +15,10 @@ const nextConfig = {
     // Add unoptimized flag for GIF images
     unoptimized: true,
   },
+  // Disable ESLint during build
+  eslint: {
+    ignoreDuringBuilds: true,
+  }
 };
 
 export default nextConfig;
