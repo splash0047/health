@@ -1,6 +1,16 @@
 [build]
   command = "next build"
   publish = ".next"
+  ignore = "node_modules"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  included_files = ["!"]
+
+[dev]
+  command = "npm run dev"
+
+[build.environment]
+  NEXT_DISABLE_ESLINT = "true"
