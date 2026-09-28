@@ -16,6 +16,14 @@ To democratize access to AI-powered medical diagnostics and empower individuals 
 
 Hygieia is designed as a supplementary tool for educational and informational purposes only. It is not intended to replace professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.
 
+## Architecture
+
+![Current system architecture](docs/architecture/architecture.svg)
+
+[Download the interactive Archify diagram (open locally)](docs/architecture/architecture.html) · [View the source specification](docs/architecture/architecture.json)
+
+This diagram maps the components present in the repository. Optional integrations and implementation limits are called out in the diagram.
+
 ## Key Features
 
 - **Multi-Disease Prediction**: Support for 8 different disease prediction models
