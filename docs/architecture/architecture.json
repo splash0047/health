@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Hygieia current implementation",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/splash0047/health",
+      "provider": "github",
+      "revision": "2f6f606396faaa04c8b4b6534e61cd42c79cdceb"
+    }
+  },
+  "components": [
+    {
+      "id": "web",
+      "type": "frontend",
+      "label": "Next.js pages",
+      "pos": [
+        65,
+        300
+      ],
+      "size": [
+        160,
+        70
+      ],
+      "sources": [
+        {
+          "path": "src/app/page.tsx"
+        }
+      ],
+      "sublabel": "symptoms / disease forms"
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "FastAPI",
+      "pos": [
+        365,
+        300
+      ],
+      "size": [
+        160,
+        70
+      ],
+      "sources": [
+        {
+          "path": "backend/main.py"
+        }
+      ],
+      "sublabel": "prediction endpoints"
+    },
+    {
+      "id": "model",
+      "type": "backend",
+      "label": "XGBoost + saved models",
+      "pos": [
+        675,
+        300
+      ],
+      "size": [
+        160,
+        70
+      ],
+      "sources": [
+        {
+          "path": "backend/disease_model.py"
+        }
+      ],
+      "sublabel": "tabular predictions"
+    },
+    {
+      "id": "data",
+      "type": "database",
+      "label": "Local model + CSV files",
+      "pos": [
+        975,
+        300
+      ],
+      "size": [
+        160,
+        70
+      ],
+      "sources": [
+        {
+          "path": "backend/data/dataset.csv"
+        }
+      ],
+      "sublabel": "descriptions / precautions"
+    },
+    {
+      "id": "proxy",
+      "type": "backend",
+      "label": "Next API route",
+      "pos": [
+        365,
+        100
+      ],
+      "size": [
+        160,
+        70
+      ],
+      "sources": [
+        {
+          "path": "src/app/api/predict/route.ts"
+        }
+      ],
+      "sublabel": "alternate /api/predict"
+    },
+    {
+      "id": "image",
+      "type": "backend",
+      "label": "Image analysis route",
+      "pos": [
+        675,
+        510
+      ],
+      "size": [
+        160,
+        70
+      ],
+      "sources": [
+        {
+          "path": "backend/routes/image_processing.py"
+        }
+      ],
+      "sublabel": "some placeholder outputs"
+    },
+    {
+      "id": "gemini",
+      "type": "external",
+      "label": "Gemini API",
+      "pos": [
+        975,
+        510
+      ],
+      "size": [
+        160,
+        70
+      ],
+      "sources": [
+        {
+          "path": "backend/routes/image_processing.py"
+        }
+      ],
+      "sublabel": "image descriptions"
+    }
+  ],
+  "connections": [
+    {
+      "from": "web",
+      "to": "api",
+      "label": "direct prediction requests"
+    },
+    {
+      "from": "api",
+      "to": "model",
+      "label": "inference"
+    },
+    {
+      "from": "model",
+      "to": "data",
+      "label": "local assets"
+    },
+    {
+      "from": "web",
+      "to": "proxy",
+      "label": "alternate POST",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "from": "api",
+      "to": "image",
+      "label": "image upload"
+    },
+    {
+      "from": "image",
+      "to": "gemini",
+      "label": "optional API call"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Runtime path",
+      "items": [
+        "The UI directly calls a local FastAPI endpoint for general prediction"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Implementation note",
+      "items": [
+        "Some image handlers return placeholder values; these are not validated diagnoses"
+      ]
+    }
+  ]
+}
