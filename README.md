@@ -20,7 +20,7 @@ Hygieia is designed as a supplementary tool for educational and informational pu
 
 ![Current system architecture](docs/architecture/architecture.svg)
 
-[Explore the interactive Archify diagram](docs/architecture/architecture.html) · [View the source specification](docs/architecture/architecture.json)
+[Download the interactive Archify diagram (open locally)](docs/architecture/architecture.html) · [View the source specification](docs/architecture/architecture.json)
 
 This diagram maps the components present in the repository. Optional integrations and implementation limits are called out in the diagram.
 
